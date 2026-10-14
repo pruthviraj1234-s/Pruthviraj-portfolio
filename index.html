@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pruthviraj Sonawane - Computer Engineering Undergraduate & Java Developer from Dhule, Maharashtra.">
+    <title>Pruthviraj Sonawane | Computer Engineer & Java Developer</title>
+    
+    <!-- Google Fonts: Inter & JetBrains Mono for authentic dev aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#070a12',
+                        darkCard: '#0f172a',
+                        darkBorder: '#1e293b',
+                        accentBlue: '#38bdf8',
+                        accentCyan: '#06b6d4',
+                        accentIndigo: '#6366f1',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-darkBg text-slate-200 font-sans antialiased selection:bg-sky-500 selection:text-white relative overflow-x-hidden">
+
+    <!-- Ambient Tech Glow Elements -->
+    <div class="fixed top-0 left-1/3 w-[600px] h-[400px] bg-sky-600/10 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+    <div class="fixed bottom-10 right-10 w-[500px] h-[400px] bg-indigo-600/10 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+
+    <!-- Toast Notification Box -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-28 opacity-0 transition-all duration-300 flex items-center gap-3 px-5 py-3.5 rounded-xl bg-slate-900/95 border border-sky-500/40 text-white shadow-2xl shadow-sky-950/60 font-mono text-sm">
+        <i class="fa-solid fa-circle-check text-sky-400 text-base"></i>
+        <span id="toastMsg">Action completed!</span>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 w-full z-40 backdrop-blur-md bg-darkBg/90 border-b border-darkBorder/80 transition-all duration-300" id="navbar">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white font-extrabold text-sm shadow-md shadow-sky-500/20 group-hover:scale-105 transition-transform duration-200">
+                    PS
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold text-sm sm:text-base text-white tracking-tight group-hover:text-sky-400 transition-colors">Pruthviraj Sonawane</span>
+                    <span class="text-[11px] text-slate-400 font-mono">Computer Engineering</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#about" class="nav-link hover:text-white transition-colors">About</a>
+                <a href="#skills" class="nav-link hover:text-white transition-colors">Skills</a>
+                <a href="#projects" class="nav-link hover:text-white transition-colors">Projects</a>
+                <a href="#education" class="nav-link hover:text-white transition-colors">Education</a>
+                <a href="#contact" class="nav-link hover:text-white transition-colors">Contact</a>
+            </nav>
+
+            <!-- Quick Action Buttons -->
+            <div class="hidden md:flex items-center gap-3">
+                <a href="resume.html" target="_blank" class="px-3.5 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 border border-slate-700 text-slate-200 text-xs font-mono font-medium hover:text-white transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-file-pdf text-sky-400"></i>
+                    <span>Resume</span>
+                </a>
+                <a href="#contact" class="px-4 py-2 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold text-xs transition-colors">
+                    Get in Touch
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-slate-300 hover:text-white p-2 focus:outline-none" aria-label="Toggle menu">
+                <i class="fa-solid fa-bars text-xl" id="menuIcon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-darkCard/98 backdrop-blur-xl border-b border-darkBorder px-6 py-6 transition-all shadow-2xl">
+            <div class="flex flex-col gap-4 text-base font-medium">
+                <a href="#about" class="mobile-link py-2 text-slate-200 hover:text-sky-400 transition-colors">About Me</a>
+                <a href="#skills" class="mobile-link py-2 text-slate-200 hover:text-sky-400 transition-colors">Technical Skills</a>
+                <a href="#projects" class="mobile-link py-2 text-slate-200 hover:text-sky-400 transition-colors">Projects</a>
+                <a href="#education" class="mobile-link py-2 text-slate-200 hover:text-sky-400 transition-colors">Education</a>
+                <a href="#contact" class="mobile-link py-2 text-slate-200 hover:text-sky-400 transition-colors">Contact</a>
+                <div class="pt-4 border-t border-darkBorder flex flex-col gap-3">
+                    <a href="resume.html" target="_blank" class="mobile-link py-2.5 rounded-lg bg-slate-800 text-center text-slate-200 font-semibold text-sm border border-slate-700 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-file-pdf text-sky-400"></i>
+                        <span>View Resume</span>
+                    </a>
+                    <a href="#contact" class="mobile-link py-2.5 rounded-lg bg-sky-500 text-center text-slate-950 font-bold text-sm">
+                        Contact Me
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative z-10">
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen pt-36 pb-20 flex items-center justify-center px-6">
+            <div class="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Hero Information -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <!-- Status Badge -->
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs text-slate-300 font-mono">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 status-dot"></span>
+                        <span>Available for Internships & Projects</span>
+                    </div>
+
+                    <!-- Main Name with Floating Wave Animation -->
+                    <div>
+                        <div class="text-sm font-mono text-sky-400 uppercase tracking-widest font-semibold mb-2">
+                            Hello World, I'm
+                        </div>
+                        <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight select-none">
+                            <!-- Floating Wave Animated Name -->
+                            <span class="inline-flex flex-wrap gap-x-4 items-center justify-center lg:justify-start">
+                                <!-- "Pruthviraj" word wave -->
+                                <span class="wave-word text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-cyan-300 to-blue-400">
+                                    <span class="wave-char" style="--char-index: 0">P</span>
+                                    <span class="wave-char" style="--char-index: 1">r</span>
+                                    <span class="wave-char" style="--char-index: 2">u</span>
+                                    <span class="wave-char" style="--char-index: 3">t</span>
+                                    <span class="wave-char" style="--char-index: 4">h</span>
+                                    <span class="wave-char" style="--char-index: 5">v</span>
+                                    <span class="wave-char" style="--char-index: 6">i</span>
+                                    <span class="wave-char" style="--char-index: 7">r</span>
+                                    <span class="wave-char" style="--char-index: 8">a</span>
+                                    <span class="wave-char" style="--char-index: 9">j</span>
+                                </span>
+                                <!-- "Sonawane" word wave -->
+                                <span class="wave-word text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-sky-400">
+                                    <span class="wave-char" style="--char-index: 10">S</span>
+                                    <span class="wave-char" style="--char-index: 11">o</span>
+                                    <span class="wave-char" style="--char-index: 12">n</span>
+                                    <span class="wave-char" style="--char-index: 13">a</span>
+                                    <span class="wave-char" style="--char-index: 14">w</span>
+                                    <span class="wave-char" style="--char-index: 15">a</span>
+                                    <span class="wave-char" style="--char-index: 16">n</span>
+                                    <span class="wave-char" style="--char-index: 17">e</span>
+                                </span>
+                            </span>
+                        </h1>
+                    </div>
+
+                    <!-- Role Subtitle -->
+                    <div class="text-lg sm:text-xl text-slate-300 font-medium">
+                        Computer Engineering Student & <span class="text-sky-400 font-mono font-semibold" id="typingText">Java Developer</span>
+                    </div>
+
+                    <!-- Authentic Bio -->
+                    <p class="text-slate-400 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                        Undergraduate from <strong class="text-slate-200">Dhule, Maharashtra</strong>. I enjoy writing clean backend code in <strong>Java</strong>, working through <strong>Data Structures & Algorithms</strong>, and understanding how reliable software systems are built.
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#projects" class="px-6 py-3 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-sm transition-all duration-200 flex items-center gap-2 shadow-lg shadow-sky-500/20">
+                            <span>View My Work</span>
+                            <i class="fa-solid fa-arrow-down text-xs"></i>
+                        </a>
+                        <button onclick="copyEmail()" class="px-5 py-3 rounded-xl bg-darkCard border border-darkBorder hover:border-slate-600 text-slate-200 hover:text-white font-mono text-xs sm:text-sm transition-all flex items-center gap-2.5">
+                            <i class="fa-regular fa-copy text-sky-400"></i>
+                            <span>rrsonawane44@gmail.com</span>
+                        </button>
+                    </div>
+
+                    <!-- Real Highlights -->
+                    <div class="pt-6 border-t border-darkBorder/60 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-slate-400 font-mono">
+                        <span class="flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-rose-400"></i> Dhule, Maharashtra
+                        </span>
+                        <span class="flex items-center gap-2">
+                            <i class="fa-brands fa-java text-orange-400"></i> Java (Core & OOP)
+                        </span>
+                        <span class="flex items-center gap-2">
+                            <i class="fa-solid fa-graduation-cap text-sky-400"></i> B.E. Computer Engineering
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Right Hero: Code Window (Authentic Java Source) -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="w-full max-w-md rounded-2xl bg-darkCard border border-darkBorder shadow-2xl overflow-hidden font-mono text-xs sm:text-sm">
+                        <!-- Window Titlebar -->
+                        <div class="px-4 py-3 bg-[#0c1220] border-b border-darkBorder flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+                                <span class="text-slate-400 text-xs ml-2">Pruthviraj.java</span>
+                            </div>
+                            <span class="text-sky-400 text-xs font-semibold">JDK 17</span>
+                        </div>
+
+                        <!-- Code Content -->
+                        <div class="p-5 space-y-2 text-slate-300 leading-relaxed select-none">
+                            <p><span class="text-indigo-400">package</span> com.pruthviraj.portfolio;</p>
+                            <br>
+                            <p><span class="text-purple-400">public class</span> <span class="text-yellow-300">Developer</span> {</p>
+                            <p class="pl-4"><span class="text-purple-400">String</span> name = <span class="text-green-400">"Pruthviraj Sonawane"</span>;</p>
+                            <p class="pl-4"><span class="text-purple-400">String</span> location = <span class="text-green-400">"Dhule, Maharashtra"</span>;</p>
+                            <p class="pl-4"><span class="text-purple-400">String</span> education = <span class="text-green-400">"B.E. Computer Engineering"</span>;</p>
+                            <p class="pl-4"><span class="text-purple-400">String[]</span> primaryTech = {<span class="text-green-400">"Java"</span>, <span class="text-green-400">"OOP"</span>, <span class="text-green-400">"DSA"</span>, <span class="text-green-400">"SQL"</span>};</p>
+                            <br>
+                            <p class="pl-4"><span class="text-purple-400">public void</span> <span class="text-sky-400">contactMe</span>() {</p>
+                            <p class="pl-8 text-slate-500">// Feel free to reach out anytime</p>
+                            <p class="pl-8"><span class="text-yellow-300">System</span>.out.<span class="text-sky-400">println</span>(<span class="text-green-400">"rrsonawane44@gmail.com"</span>);</p>
+                            <p class="pl-4">}</p>
+                            <p>}</p>
+                        </div>
+
+                        <!-- Terminal Footer -->
+                        <div class="px-5 py-2.5 bg-[#090e18] border-t border-darkBorder flex items-center justify-between text-xs text-slate-500">
+                            <span class="flex items-center gap-1.5 text-emerald-400">
+                                <i class="fa-solid fa-check text-[10px]"></i> Ready to Collaborate
+                            </span>
+                            <span>Java Application</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- About Section (Authentic & Professional) -->
+        <section id="about" class="py-20 px-6 border-t border-darkBorder/60 bg-darkCard/20">
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-12">
+                    <span class="text-xs font-mono uppercase tracking-widest text-sky-400 bg-sky-500/10 px-3 py-1 rounded-full border border-sky-500/20">
+                        About Me
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-3">
+                        Engineering Background & Technical Interests
+                    </h2>
+                </div>
+
+                <div class="pro-card p-8 rounded-2xl space-y-6 text-slate-300 leading-relaxed text-sm sm:text-base">
+                    <p>
+                        I am currently an undergraduate student pursuing a <strong>Bachelor of Engineering in Computer Engineering</strong> in Dhule, Maharashtra. My passion lies in software development, particularly backend logic and understanding how complex systems function from the ground up.
+                    </p>
+                    <p>
+                        Over the course of my academics and self-study, I have focused heavily on <strong>Java programming</strong>, mastering <strong>Object-Oriented Programming (OOP)</strong> principles like polymorphism, inheritance, encapsulation, and abstraction. I actively practice writing modular, readable, and structured code.
+                    </p>
+                    <p>
+                        Outside of core coursework, I am strengthening my knowledge of <strong>Data Structures & Algorithms (DSA)</strong>, relational database design with <strong>MySQL</strong>, and learning practical web development to build end-to-end applications.
+                    </p>
+
+                    <!-- Quick Facts Grid -->
+                    <div class="pt-6 border-t border-slate-800 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono">
+                        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+                            <div class="text-slate-400">Degree</div>
+                            <div class="text-white font-bold text-sm mt-1">B.E. Computer Eng.</div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+                            <div class="text-slate-400">Primary Language</div>
+                            <div class="text-sky-400 font-bold text-sm mt-1">Java (JDK 17)</div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+                            <div class="text-slate-400">Base Location</div>
+                            <div class="text-white font-bold text-sm mt-1">Dhule, MH, India</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Skills Section -->
+        <section id="skills" class="py-20 px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-12">
+                    <span class="text-xs font-mono uppercase tracking-widest text-sky-400 bg-sky-500/10 px-3 py-1 rounded-full border border-sky-500/20">
+                        Technical Toolkit
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-3">
+                        Skills & Competencies
+                    </h2>
+                    <p class="text-slate-400 mt-2 text-sm">
+                        Languages, core computer science subjects, and developer tools I work with.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Programming Languages -->
+                    <div class="pro-card p-6 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-9 h-9 rounded-lg bg-sky-500/10 text-sky-400 flex items-center justify-center text-base">
+                                <i class="fa-solid fa-code"></i>
+                            </div>
+                            <h3 class="font-bold text-white text-base">Programming Languages</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2 text-xs font-mono">
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-800 text-sky-300 border border-slate-700 font-semibold">Java (Core & OOP)</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">C++ Basics</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">C Programming</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">Python (Basics)</span>
+                        </div>
+                    </div>
+
+                    <!-- Core Computer Science -->
+                    <div class="pro-card p-6 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-9 h-9 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-base">
+                                <i class="fa-solid fa-brain"></i>
+                            </div>
+                            <h3 class="font-bold text-white text-base">Computer Science Core</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2 text-xs font-mono">
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">Object-Oriented Design (OOP)</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">Data Structures & Algorithms</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">Database Management (DBMS)</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">Operating Systems</span>
+                        </div>
+                    </div>
+
+                    <!-- Web & Databases -->
+                    <div class="pro-card p-6 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-9 h-9 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-base">
+                                <i class="fa-solid fa-database"></i>
+                            </div>
+                            <h3 class="font-bold text-white text-base">Web & Databases</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2 text-xs font-mono">
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">MySQL / SQL Queries</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">HTML5</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">CSS3 / Tailwind CSS</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">JavaScript</span>
+                        </div>
+                    </div>
+
+                    <!-- Developer Tools -->
+                    <div class="pro-card p-6 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-9 h-9 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center text-base">
+                                <i class="fa-solid fa-screwdriver-wrench"></i>
+                            </div>
+                            <h3 class="font-bold text-white text-base">Tools & Environment</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2 text-xs font-mono">
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">Git & GitHub</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">IntelliJ IDEA</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">VS Code</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">MySQL Workbench</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section (Authentic Developer Projects) -->
+        <section id="projects" class="py-20 px-6 border-t border-darkBorder/60 bg-darkCard/20">
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-12">
+                    <span class="text-xs font-mono uppercase tracking-widest text-sky-400 bg-sky-500/10 px-3 py-1 rounded-full border border-sky-500/20">
+                        Work & Projects
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-3">
+                        Featured Projects
+                    </h2>
+                    <p class="text-slate-400 mt-2 text-sm">
+                        Applications developed to implement object-oriented architectures and practical problem solving.
+                    </p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Project 1 -->
+                    <div class="pro-card p-7 rounded-2xl transition-all">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <h3 class="text-lg font-bold text-white">Student Academic Management System</h3>
+                            <span class="text-xs font-mono px-2.5 py-1 rounded bg-sky-500/10 text-sky-400 border border-sky-500/30">Java / OOP</span>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                            A modular desktop management application designed to handle student enrollment, course registrations, attendance logs, and GPA calculations. Implements clean class hierarchies, data validation against duplicate student roll numbers, and persistent storage using file I/O and MySQL integration.
+                        </p>
+                        <div class="flex flex-wrap items-center justify-between gap-4 pt-3 border-t border-slate-800">
+                            <div class="flex flex-wrap gap-2 text-xs font-mono text-slate-400">
+                                <span>#Java</span>
+                                <span>#OOP</span>
+                                <span>#FileIO</span>
+                                <span>#MySQL</span>
+                            </div>
+                            <button onclick="openProjectModal('student')" class="text-xs font-mono text-sky-400 hover:text-sky-300 flex items-center gap-1.5 transition-colors">
+                                <span>View Code Details</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="pro-card p-7 rounded-2xl transition-all">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <h3 class="text-lg font-bold text-white">ATM & Banking Simulation Engine</h3>
+                            <span class="text-xs font-mono px-2.5 py-1 rounded bg-blue-500/10 text-blue-400 border border-blue-500/30">Core Java</span>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                            A secure console-based banking application built to practice encapsulation and exception management. Simulates real-world ATM workflows including PIN authentication, fund transfers between accounts, withdrawal limit validations, and printable transaction audit history.
+                        </p>
+                        <div class="flex flex-wrap items-center justify-between gap-4 pt-3 border-t border-slate-800">
+                            <div class="flex flex-wrap gap-2 text-xs font-mono text-slate-400">
+                                <span>#Java</span>
+                                <span>#Exceptions</span>
+                                <span>#Collections</span>
+                                <span>#DataStructures</span>
+                            </div>
+                            <button onclick="openProjectModal('banking')" class="text-xs font-mono text-sky-400 hover:text-sky-300 flex items-center gap-1.5 transition-colors">
+                                <span>View Code Details</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="pro-card p-7 rounded-2xl transition-all">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <h3 class="text-lg font-bold text-white">Personal Developer Portfolio</h3>
+                            <span class="text-xs font-mono px-2.5 py-1 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/30">Frontend</span>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                            A high-performance personal developer website engineered with clean semantic HTML5, utility styling with Tailwind CSS, and lightweight vanilla JavaScript animations including floating wave text typography.
+                        </p>
+                        <div class="flex flex-wrap items-center justify-between gap-4 pt-3 border-t border-slate-800">
+                            <div class="flex flex-wrap gap-2 text-xs font-mono text-slate-400">
+                                <span>#HTML5</span>
+                                <span>#TailwindCSS</span>
+                                <span>#JavaScript</span>
+                                <span>#Responsive</span>
+                            </div>
+                            <button onclick="openProjectModal('portfolio')" class="text-xs font-mono text-sky-400 hover:text-sky-300 flex items-center gap-1.5 transition-colors">
+                                <span>View Code Details</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="py-20 px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-12">
+                    <span class="text-xs font-mono uppercase tracking-widest text-sky-400 bg-sky-500/10 px-3 py-1 rounded-full border border-sky-500/20">
+                        Academic Path
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-3">
+                        Education & Qualifications
+                    </h2>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- B.E. Computer Engineering -->
+                    <div class="pro-card p-6 rounded-2xl">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                            <h3 class="text-lg font-bold text-white">Bachelor of Engineering (B.E.) in Computer Engineering</h3>
+                            <span class="text-xs font-mono px-2.5 py-1 rounded bg-sky-500/10 text-sky-400 border border-sky-500/30">
+                                Undergraduate
+                            </span>
+                        </div>
+                        <p class="text-slate-400 text-sm font-mono mb-3">
+                            <i class="fa-solid fa-location-dot text-rose-400 mr-1.5"></i> Dhule, Maharashtra
+                        </p>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Coursework includes Object-Oriented Programming (Java), Data Structures & Algorithms, Database Management Systems (DBMS), Operating Systems, Computer Networks, and Software Engineering principles.
+                        </p>
+                    </div>
+
+                    <!-- HSC / 12th -->
+                    <div class="pro-card p-6 rounded-2xl">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                            <h3 class="text-lg font-bold text-white">Higher Secondary Certificate (HSC - 12th)</h3>
+                            <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">
+                                Completed
+                            </span>
+                        </div>
+                        <p class="text-slate-400 text-sm font-mono">
+                            Science Stream (Physics, Chemistry, Mathematics) • Maharashtra State Board
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 px-6 border-t border-darkBorder/60 bg-darkCard/20">
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-12">
+                    <span class="text-xs font-mono uppercase tracking-widest text-sky-400 bg-sky-500/10 px-3 py-1 rounded-full border border-sky-500/20">
+                        Get In Touch
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-3">
+                        Contact & Opportunities
+                    </h2>
+                    <p class="text-slate-400 mt-2 text-sm">
+                        I am open to software development internships, project discussions, and collaborations.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                    <!-- Left: Details -->
+                    <div class="md:col-span-5 space-y-4">
+                        <div class="pro-card p-6 rounded-2xl space-y-4">
+                            <div>
+                                <div class="text-xs text-slate-400 font-mono">Direct Email</div>
+                                <div class="flex items-center justify-between mt-1">
+                                    <a href="mailto:rrsonawane44@gmail.com" class="text-white hover:text-sky-400 font-medium text-sm transition-colors truncate">
+                                        rrsonawane44@gmail.com
+                                    </a>
+                                    <button onclick="copyEmail()" class="text-xs text-sky-400 hover:text-sky-300 font-mono ml-2">Copy</button>
+                                </div>
+                            </div>
+
+                            <div class="pt-3 border-t border-slate-800">
+                                <div class="text-xs text-slate-400 font-mono">Location</div>
+                                <div class="text-slate-200 text-sm mt-1">Dhule, Maharashtra, India</div>
+                            </div>
+
+                            <div class="pt-3 border-t border-slate-800">
+                                <div class="text-xs text-slate-400 font-mono mb-2">Resume / CV</div>
+                                <a href="resume.html" target="_blank" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-sky-400 text-xs font-mono font-medium transition-colors">
+                                    <i class="fa-solid fa-file-pdf"></i>
+                                    <span>View / Print Resume</span>
+                                </a>
+                            </div>
+
+                            <div class="pt-3 border-t border-slate-800">
+                                <div class="text-xs text-slate-400 font-mono mb-2">Social Links</div>
+                                <div class="flex gap-2.5">
+                                    <a href="https://github.com" target="_blank" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-sky-500 hover:text-slate-950 text-slate-300 flex items-center justify-center transition-all" title="GitHub">
+                                        <i class="fa-brands fa-github text-base"></i>
+                                    </a>
+                                    <a href="https://linkedin.com" target="_blank" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-blue-600 hover:text-white text-slate-300 flex items-center justify-center transition-all" title="LinkedIn">
+                                        <i class="fa-brands fa-linkedin-in text-base"></i>
+                                    </a>
+                                    <a href="mailto:rrsonawane44@gmail.com" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-emerald-500 hover:text-white text-slate-300 flex items-center justify-center transition-all" title="Email">
+                                        <i class="fa-solid fa-envelope text-base"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Contact Form -->
+                    <div class="md:col-span-7">
+                        <div class="pro-card p-6 rounded-2xl">
+                            <form id="contactForm" class="space-y-4">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="name" class="block text-xs font-mono text-slate-300 mb-1">Your Name</label>
+                                        <input type="text" id="name" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 text-sm transition-all" placeholder="E.g. Rohit">
+                                    </div>
+                                    <div>
+                                        <label for="email" class="block text-xs font-mono text-slate-300 mb-1">Your Email</label>
+                                        <input type="email" id="email" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 text-sm transition-all" placeholder="rohit@example.com">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="subject" class="block text-xs font-mono text-slate-300 mb-1">Subject</label>
+                                    <input type="text" id="subject" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 text-sm transition-all" placeholder="Project Inquiry / Job Opportunity">
+                                </div>
+
+                                <div>
+                                    <label for="message" class="block text-xs font-mono text-slate-300 mb-1">Message</label>
+                                    <textarea id="message" rows="4" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 text-sm transition-all resize-none" placeholder="Hi Pruthviraj, I came across your portfolio..."></textarea>
+                                </div>
+
+                                <button type="submit" class="w-full py-3 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-sm transition-colors flex items-center justify-center gap-2">
+                                    <i class="fa-regular fa-paper-plane"></i>
+                                    <span>Send Message via Email</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Project Details Modal Popup -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-darkCard border border-darkBorder w-full max-w-xl rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
+            <div class="px-6 py-4 bg-slate-900/90 border-b border-darkBorder flex items-center justify-between">
+                <h3 id="modalTitle" class="text-base font-bold text-white">Project Title</h3>
+                <button onclick="closeProjectModal()" class="text-slate-400 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
+            <div class="p-6 max-h-[70vh] overflow-y-auto space-y-4">
+                <div>
+                    <h4 class="text-xs font-mono text-sky-400 uppercase tracking-wider mb-1">Overview</h4>
+                    <p id="modalDesc" class="text-slate-300 text-sm leading-relaxed"></p>
+                </div>
+                <div>
+                    <h4 class="text-xs font-mono text-sky-400 uppercase tracking-wider mb-1">Key Features</h4>
+                    <ul id="modalFeatures" class="list-disc list-inside text-slate-300 text-sm space-y-1"></ul>
+                </div>
+                <div>
+                    <h4 class="text-xs font-mono text-sky-400 uppercase tracking-wider mb-2">Java Code Preview</h4>
+                    <pre class="p-4 rounded-xl bg-slate-950 border border-slate-800 text-slate-300 font-mono text-xs overflow-x-auto leading-relaxed"><code id="modalCode"></code></pre>
+                </div>
+            </div>
+            <div class="px-6 py-3.5 bg-slate-900/60 border-t border-darkBorder flex justify-end">
+                <button onclick="closeProjectModal()" class="px-4 py-2 rounded-lg bg-slate-800 text-white font-mono text-xs hover:bg-slate-700 transition-colors">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 border-t border-darkBorder bg-[#050810] text-xs text-slate-500">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <span class="w-6 h-6 rounded-md bg-sky-500/20 text-sky-400 font-bold flex items-center justify-center text-xs">PS</span>
+                <span class="text-slate-400">Pruthviraj Sonawane &copy; 2026. All rights reserved.</span>
+            </div>
+            <div class="flex items-center gap-6 text-slate-400 font-mono">
+                <a href="resume.html" target="_blank" class="hover:text-sky-400 transition-colors">Resume</a>
+                <a href="#hero" class="hover:text-sky-400 transition-colors">Top ↑</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
